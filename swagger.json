@@ -22,29 +22,39 @@
         ],
         "components": {
             "schemas": {
-                "blague": {
+                "music": {
                     "type": "object",
                     "properties": {
                         "id": {
                             "type": "integer",
-                            "description": "Id de la blague"
+                            "description": "Id de la musique"
                         },
-                        "blague": {
+                        "title": {
                             "type": "string",
-                            "description": "La question de la blague"
+                            "description": "Nom de la musique"
                         },
-                        "reponse": {
+                        "cover": {
                             "type": "string",
-                            "description": "Reponse de la blague"
+                            "description": "Lien de la cover de la musique"
+                        },
+                        "sound": {
+                            "type": "string",
+                            "description": "Lien du fichier de la musique"
+                        },
+                        "category": {
+                            "type": "string",
+                            "description": "Nom de la catégorie de la musique"
                         }
                     },
                     "example": {
                         "id": 2,
-                        "blague": "Que dit un oignon quand il se cogne ?",
-                        "reponse": "Aïe"
+                        "cover": "the_sound_of_silence_cover.jpg",
+                        "sound": "Disturbed-The_Sound_Of_Silence.mp3",
+                        "title": "The Sound of Silence",
+                        "category": "pop"
                     }
                 },
-                "addBlague": {
+                "addMusic": {
                     "type": "object",
                     "properties": {
                         "message": {
@@ -53,16 +63,16 @@
                         },
                         "result": {
                             "type": "object",
-                            "$ref": "#/components/schemas/blague"
+                            "$ref": "#/components/schemas/music"
                         }
                     }
                 },
-                "responseBlague": {
+                "responseMusic": {
                     "type": "object",
                     "properties": {
                         "result": {
                             "type": "object",
-                            "$ref": "#/components/schemas/blague"
+                            "$ref": "#/components/schemas/music"
                         }
                     }
                 },
@@ -78,19 +88,19 @@
             }
         },
         "paths": {
-            "/blague": {
+            "/music": {
                 "get": {
-                    "summary": "Retourne tout les blagues de la bdd",
+                    "summary": "Retourne tout les musiques de la bdd",
                     "tags": [
-                        "blague"
+                        "music"
                     ],
                     "responses": {
                         "200": {
-                            "description": "Tout les blagues de la bdd.",
+                            "description": "Tout les musiques de la bdd.",
                             "content": {
                                 "application/json": {
                                     "schema": {
-                                        "$ref": "#/components/schemas/blague"
+                                        "$ref": "#/components/schemas/music"
                                     }
                                 }
                             }
@@ -101,27 +111,27 @@
                     }
                 },
                 "post": {
-                    "summary": "Permet d'ajouter une blague a la bdd.",
+                    "summary": "Permet d'ajouter une musique a la bdd.",
                     "tags": [
-                        "blague"
+                        "music"
                     ],
                     "requestBody": {
                         "required": true,
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/blague"
+                                    "$ref": "#/components/schemas/music"
                                 }
                             }
                         }
                     },
                     "responses": {
                         "201": {
-                            "description": "Create blague in database",
+                            "description": "Create music in database",
                             "content": {
                                 "application/json": {
                                     "schema": {
-                                        "$ref": "#/components/schemas/addBlague"
+                                        "$ref": "#/components/schemas/addMusic"
                                     }
                                 }
                             }
@@ -129,11 +139,11 @@
                     }
                 }
             },
-            "/blague/{id}": {
+            "/music/{id}": {
                 "get": {
-                    "summary": "Get information about on blague",
+                    "summary": "Get information about on music",
                     "tags": [
-                        "blague"
+                        "music"
                     ],
                     "parameters": [
                         {
@@ -143,22 +153,22 @@
                                 "type": "integer"
                             },
                             "required": true,
-                            "description": "Id of the blague"
+                            "description": "Id of the music"
                         }
                     ],
                     "responses": {
                         "200": {
-                            "description": "blague when id it ok",
+                            "description": "music when id it ok",
                             "content": {
                                 "application/json": {
                                     "schema": {
-                                        "$ref": "#/components/schemas/responseBlague"
+                                        "$ref": "#/components/schemas/responseMusic"
                                     }
                                 }
                             }
                         },
                         "404": {
-                            "description": "Error blague not found",
+                            "description": "Error music not found",
                             "content": {
                                 "application/json": {
                                     "schema": {
@@ -178,21 +188,37 @@
                             }
                         }
                     }
+                },
+                "delete": {
+                    "summary": "Supprime une musique selon l'id",
+                    "tags": [
+                        "music"
+                    ],
+                    "responses":{"200":{
+                        "description": "Suppresion effectuée.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type":"string"
+                                }
+                            }
+                        }
+                    }}
                 }
             },
-            "/blague/random": {
+            "/music/random": {
                 "get": {
-                    "summary": "Permet de récuperer une blague aléatoire",
+                    "summary": "Permet de récuperer une musique aléatoire",
                     "tags": [
-                        "blague"
+                        "music"
                     ],
                     "responses": {
                         "200": {
-                            "description": "La blague selectionner alétaoirement.",
+                            "description": "La musique selectionner alétaoirement.",
                             "content": {
                                 "application/json": {
                                     "schema": {
-                                        "$ref": "#/components/schemas/responseBlague"
+                                        "$ref": "#/components/schemas/responseMusic"
                                     }
                                 }
                             }

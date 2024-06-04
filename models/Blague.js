@@ -1,5 +1,5 @@
 const { DataTypes } = require("sequelize");
-const connexion = require("./../DB/dbConnect");
+const connexion = require("../DB/dbConnect");
 
 const Blague = connexion.define("Blague", {
   // Model attributes are defined here
@@ -8,7 +8,7 @@ const Blague = connexion.define("Blague", {
     autoIncrement: true,
     primaryKey: true,
   },
-  blague: {
+  question: {
     type: DataTypes.STRING,
     allowNull: false,
   },
