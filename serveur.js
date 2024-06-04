@@ -15,9 +15,9 @@ const { SELECT } = require("sequelize/lib/query-types");
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(`/examapi/${version}`, router);
+app.use(`/api/${version}`, router);
 app.use(
-  `/examapi/${version}/api-docs`,
+  `/api/${version}/api-docs`,
   swaggerUi.serve,
   swaggerUi.setup(specs, { explorer: true })
 );
