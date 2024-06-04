@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const controllerBlague = require("../controller/blague");
+const controllerBlague = require("./../controller/blague");
 
 router.get("/", (req, res) => {
   res.status(200).json({ success: "RACINE API" });
@@ -13,8 +13,6 @@ router.post("/", (req, res) => {
 router.get("/blague", controllerBlague.find);
 
 router.post("/blague", controllerBlague.create);
-
-router.delete("/blague/:id", controllerBlague.delete);
 
 router.get("/blague/:id", controllerBlague.findById);
 

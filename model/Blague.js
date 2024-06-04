@@ -12,8 +12,9 @@ const Blague = connexion.define("Blague", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  reponse : {
+  reponse: {
     type: DataTypes.STRING,
+    allowNull: false,
   },
 });
 
