@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const controllerBlague = require("./../controller/blague");
+const controllerBlague = require("./../controller/Blague");
 
 router.get("/", (req, res) => {
   res.status(200).json({ success: "RACINE API" });
